@@ -1,5 +1,5 @@
-import { initMongoose } from "@/lib/mongoose";
-import Order from "@/models/Order";
+import { initMongoose } from "../../lib/mongoose";
+import Order from "../../models/Order";
 import { buffer } from "micro";
 //localhost:3000/api/webhook
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);

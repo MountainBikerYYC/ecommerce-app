@@ -1,6 +1,7 @@
-import Layout from "@/components/Layout";
-import { ProductsContext } from "@/components/ProductsContext";
-import { useContext, useState, useEffect } from "react";
+import Layout from "../components/Layout";
+import { useContext, useEffect, useState } from "react";
+import { ProductsContext } from "../components/ProductsContext";
+
 export default function CheckoutPage() {
   const { selectedProducts, setSelectedProducts } = useContext(ProductsContext);
   const [productsInfos, setProductsInfos] = useState([]);
