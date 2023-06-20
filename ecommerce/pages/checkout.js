@@ -46,7 +46,7 @@ export default function CheckoutPage() {
           ).length;
           if (amount === 0) return;
           return (
-            <div className="flex mb-5">
+            <div className="flex mb-5" key={productsInfo._id}>
               <div className="bg-gray-100 p-3 rounded-xl shrink-0">
                 <img className="w-24" src={productsInfo.pictures} alt="/" />
               </div>
@@ -83,50 +83,67 @@ export default function CheckoutPage() {
             </div>
           );
         })}
-      <div className="mt-4">
-        <input
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2"
-          type="text"
-          placeholder="Street address, number"
-        />
-        <input
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2"
-          type="text"
-          placeholder="City and Postal Code"
-        />
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2"
-          type="text"
-          placeholder="Personal Name"
-        />
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2"
-          type="email"
-          placeholder="Email address"
-        />
-      </div>
-      <div className="mt-4">
-        <div className="flex my-3">
-          <h3 className="grow font-bold text-gray-400">Subtotal:</h3>
-          <h3 className="font-bold">${subtotal}</h3>
+      <form action="api/checkout" method="POST">
+        <div className="mt-4">
+          <input
+            name="address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2"
+            type="text"
+            placeholder="Street address, number"
+          />
+          <input
+            name="city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2"
+            type="text"
+            placeholder="City and Postal Code"
+          />
+          <input
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2"
+            type="text"
+            placeholder="Personal Name"
+          />
+          <input
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2"
+            type="email"
+            placeholder="Email address"
+          />
         </div>
-        <div className="flex my-3">
-          <h3 className="grow font-bold text-gray-400">Delivery:</h3>
-          <h3 className="font-bold">${deliveryPrice}</h3>
+        <div className="mt-4">
+          <div className="flex my-3">
+            <h3 className="grow font-bold text-gray-400">Subtotal:</h3>
+            <h3 className="font-bold">${subtotal}</h3>
+          </div>
+          <div className="flex my-3">
+            <h3 className="grow font-bold text-gray-400">Delivery:</h3>
+            <h3 className="font-bold">${deliveryPrice}</h3>
+          </div>
+          <div className="flex my-3 border-t-2 pt-3 border-dashed border-emerald-500">
+            <h3 className="grow font-bold text-gray-400">Total:</h3>
+            <h3 className="font-bold">${total}</h3>
+          </div>
         </div>
-        <div className="flex my-3 border-t-2 pt-3 border-dashed border-emerald-500">
-          <h3 className="grow font-bold text-gray-400">Total:</h3>
-          <h3 className="font-bold">${total}</h3>
-        </div>
-      </div>
+        <input
+          type="hidden"
+          name="products"
+          value={selectedProducts.join(",")}
+        />
+        <button
+          type="submit"
+          className="bg-emerald-500 p-5 py-2 rounded-xl text-white w-full my-4 shadow-emerald-300 shadow-lg"
+        >
+          Pay ${total}
+        </button>
+      </form>
     </Layout>
   );
 }
