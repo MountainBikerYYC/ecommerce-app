@@ -27,7 +27,7 @@ export default function CheckoutPage() {
       });
     }
   }
-  const deliveryPrice = 5;
+
   let subtotal = 0;
   if (selectedProducts?.length) {
     for (let id of selectedProducts) {
@@ -36,7 +36,8 @@ export default function CheckoutPage() {
       subtotal += price;
     }
   }
-  const total = subtotal + deliveryPrice;
+  const taxes = Math.ceil(subtotal * 0.1);
+  const total = subtotal + taxes;
   return (
     <Layout>
       {!productsInfos.length && <div>No products in your Shopping Cart</div>}
@@ -125,8 +126,8 @@ export default function CheckoutPage() {
             <h3 className="font-bold">${subtotal}</h3>
           </div>
           <div className="flex my-3">
-            <h3 className="grow font-bold text-gray-400">Delivery:</h3>
-            <h3 className="font-bold">${deliveryPrice}</h3>
+            <h3 className="grow font-bold text-gray-400">Taxes (Estimated):</h3>
+            <h3 className="font-bold">${taxes}</h3>
           </div>
           <div className="flex my-3 border-t-2 pt-3 border-dashed border-emerald-500">
             <h3 className="grow font-bold text-gray-400">Total:</h3>
