@@ -13,7 +13,7 @@ export default function Product({ product }) {
       <div className="mt-2">
         <h3 className="font-bold text-lg">{product.name}</h3>
       </div>
-      <p className="text-sm mt-1 leading-4">{product.description}</p>
+      <p className="text-sm mt-1 leading-4 h-20 overflow-y-scroll scrollbar-hide">{product.description}</p>
       <div className="flex mt-1">
         <div className="text-xl font-bold grow">${product.price}</div>
         <button
