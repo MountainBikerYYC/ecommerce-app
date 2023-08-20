@@ -1,4 +1,4 @@
-# e-shopp
+# E-Shopp
 
 ## A Simple shopping app built with React, Tailwind, Next.Js, MongoDB.
 
